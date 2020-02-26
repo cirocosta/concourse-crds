@@ -1,0 +1,3 @@
+domain: concourse-ci.org
+repo: github.com/cirocosta/crds
+version: "2"
