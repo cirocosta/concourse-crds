@@ -1,0 +1,17 @@
+apiVersion: concourse.concourse-ci.org/v1
+kind: Pipeline
+metadata:
+  name: pipeline-sample
+spec:
+  team: main
+  paused: false
+  public: true
+  config:
+    resources:
+      - name: repository
+        type: git
+        source: {uri: https://github.com/concourse/concourse}
+    jobs:
+      - name: test
+        plan:
+          - get: repository

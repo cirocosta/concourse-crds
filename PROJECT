@@ -1,3 +1,7 @@
 domain: concourse-ci.org
 repo: github.com/cirocosta/crds
+resources:
+- group: concourse
+  kind: Pipeline
+  version: v1
 version: "2"

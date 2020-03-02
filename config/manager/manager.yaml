@@ -23,17 +23,23 @@ spec:
         control-plane: controller-manager
     spec:
       containers:
-      - command:
-        - /manager
-        args:
-        - --enable-leader-election
-        image: controller:latest
-        name: manager
+      - name: manager
+        command: [ /manager ]
+        image: controller
         resources:
-          limits:
-            cpu: 100m
-            memory: 30Mi
-          requests:
-            cpu: 100m
-            memory: 20Mi
+          limits: {cpu: 100m, memory: 30Mi}
+          requests: {cpu: 100m, memory: 20Mi}
+        env:
+          - name: CONCOURSE_URL
+            value: "http://192.168.0.11:8080"
+          - name: CONCOURSE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: concourse-auth
+                key: username
+          - name: CONCOURSE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: concourse-auth
+                key: password
       terminationGracePeriodSeconds: 10

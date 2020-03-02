@@ -1,2 +1,8 @@
 resources:
 - manager.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- digest: sha256:849513ebcfe97710d1e56d00280f020ee727bd71e6145626e82b1372cc77d8f5
+  name: controller
+  newName: cirocosta/crds
